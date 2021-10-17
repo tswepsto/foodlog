@@ -1,0 +1,51 @@
+<% content_for :title do %>
+  Foodlog &ndash; <%= DateTime.now.to_s(:nice_date) %>
+<% end %>
+<span class="has-text-centered">
+  <h1 class="title" style="margin-top: 80px;"><small><i class="fas fa-utensils"></i></small> Meals</h1>
+  <p>
+    <% if content_for(:title) %>
+      <%= yield :title %>
+    <% else %>
+        Foodlog
+    <% end %>
+  </p>
+</span>
+<div class="columns mt-6 is-centered">
+  <% @entries.each do |entry| %>
+    <div class="column is-one-quarter">
+      <div class="card">
+        <header class="card-header">
+          <div class="card-header-title">
+            <%= entry.meal_type %>
+          </div>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <p>
+              <strong><%= entry.calories %> Calories</strong>
+            </p>
+            <p>
+              <strong class="has-text-link"><%= entry.proteins %>g Protein</strong>
+            </p>
+            <p>
+              <strong class="has-text-success"><%= entry.carbohydrates %>g Carbohydrates</strong>
+            </p>
+            <p>
+              <strong class="has-text-info"><%= entry.fats %>g Fat</strong>
+            </p>
+            <p>
+              <i class="fas fa-clipboard-list has-text-grey-light"></i>
+              <span class="has-text-grey-light">Logged <%= time_ago_in_words(entry.created_at) %> ago</span>
+            </p>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <%= link_to '<i class="fas fa-edit mr-2"></i> Edit'.html_safe, edit_entry_path(entry), class: "card-footer-item" %>
+          <%= link_to '<i class="fas fa-trash mr-2"></i>Delete'.html_safe, entry, method: :delete, data: { confirm: 'Are you sure?' }, class: "card-footer-item" %>
+          <%= link_to '...', entry, class: "card-footer-item" %>
+        </footer>
+      </div>
+    </div>
+  <% end %>
+</div>

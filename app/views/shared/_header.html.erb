@@ -1,0 +1,12 @@
+<nav class="has-background-light" style="margin-bottom: 44px; position:fixed; top:0; width:100%; z-index:100;" aria-label="main navigation" >
+  <div class="navbar-brand is-pulled-left">
+    <%= link_to root_path, class:"navbar-item" do %>
+      <%= image_tag ("GMWPurpleLogo.svg") %>
+    <% end %>
+  </div>
+  <div class="navbar-item is-pulled-right">
+    <div class="buttons">
+      <%= link_to '<i class="fas fa-plus-circle mr-2"></i> Add Meal'.html_safe, new_entry_path, {:class => "button is-primary"}%>
+    </div>
+  </div>
+</nav>
